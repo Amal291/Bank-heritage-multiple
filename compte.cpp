@@ -41,6 +41,17 @@ void compte::consultersolde()const
     cout << "le num est : " << this->matricule<< endl;
     this->solde->afficher();
 }
+bool compte::retirerargent(devise* montant)
+{
+	if (*(this->solde) >= *montant)
+	{
+		*(this->solde) = *(this->solde) - *montant;
+		operation op("DD/MM/YYYY",montant,"-");
+		this->list_opera.push_back(op);
+		return true;
+	}
+
+	return false;
 
 bool compte::transfererargent(devise* montant,compte& c)
 {
